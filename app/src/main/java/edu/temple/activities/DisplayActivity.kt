@@ -26,20 +26,20 @@ class DisplayActivity : AppCompatActivity() {
         lyricsDisplayTextView = findViewById(R.id.lyricsDisplayTextView)
         textSizeSelectorButton = findViewById(R.id.textSizeSelectorButton)
 
-        textSizeSelectorButton.setOnClickListener {TextSize ->
+        textSizeSelectorButton.setOnClickListener { TextSize ->
             val launtchIntent = Intent(this@DisplayActivity, TextSizeActivity::class.java)
-           launtchIntent.putExtra(REQUEST_NAME, lyricsDisplayTextView.textSize )
+            launtchIntent.putExtra(REQUEST_NAME, lyricsDisplayTextView.textSize)
             startActivity(launtchIntent)
 
         }
         val textSize = intent.getFloatExtra(REQUEST_NAME, DEFAULT_TEXT_SIZE.toFloat())
         lyricsDisplayTextView.textSize = textSize
-    }
-        val message = intent.getStringExtra("message")
-//with(findViewById<TextView>(R.id.textSizeSelectorButton)){
-//    val transfer = intent.getIntExtra(REQUEST_NAME, DEFAULT_TEXT_SIZE)
-//    setTextSize(TypedValue.COMPLEX_UNIT_PX,transfer.toFloat())
-//}
-//    }
 
+        val message = intent.getStringExtra("message")
+        with(findViewById<TextView>(R.id.textSizeSelectorButton)) {
+            val transfer = intent.getIntExtra(REQUEST_NAME, DEFAULT_TEXT_SIZE)
+            setTextSize(TypedValue.COMPLEX_UNIT_PX, transfer.toFloat())
+        }
+
+    }
 }
